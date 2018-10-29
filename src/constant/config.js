@@ -1,4 +1,4 @@
-export const API_URL = "https://sso.liaolunling.top/sso"; //接口
+export const API_URL = "https://sso.liaolunling.top/api"; //接口
 // export const  API_URL = "//localhost:9601/sso"; //接口
 export const DEFAULT_REDIRECT_PAGE = '//preview.liaolunling.top/#/verify';
 
