@@ -35,7 +35,13 @@ class Login extends Component {
             message.success('登录成功');
             if (qs.redirect) {
               const token = rsp.headers.authorization;
-              window.location.href = `${qs.redirect}?token=${token}`;
+              const newQuery = {
+                ...qs,
+                token
+              }
+              delete newQuery.redirect;
+
+              window.location.href = `${qs.redirect}?${qs.stringify(newQuery)}`;
             } else {
               window.location.href = DEFAULT_REDIRECT_PAGE;
             }
