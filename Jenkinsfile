@@ -15,7 +15,7 @@ pipeline {
                 sh 'echo $BUILD_ID'
                 sh 'node --version'
                 sh 'npm --version'
-                sh 'npm install yarn  --registry=https://registry.npm.taobao.org'
+                // sh 'npm install yarn  --registry=https://registry.npm.taobao.org'
                 sh 'yarn install --registry=https://registry.npm.taobao.org'
             }
         }
