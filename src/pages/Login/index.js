@@ -17,13 +17,13 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      qs: qs.parse(props.location.search, { ignoreQueryPrefix: true }),
+      query: qs.parse(props.location.search, { ignoreQueryPrefix: true }),
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    const { qs } = this.state;
+    const { query } = this.state;
     const { setFieldsValue } = this.props.form;
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -33,15 +33,15 @@ class Login extends Component {
           payload: values,
           success: rsp => {
             message.success('登录成功');
-            if (qs.redirect) {
+            if (query.redirect) {
               const token = rsp.headers.authorization;
               const newQuery = {
-                ...qs,
+                ...query,
                 token
               }
               delete newQuery.redirect;
 
-              window.location.href = `${qs.redirect}?${qs.stringify(newQuery)}`;
+              window.location.href = `${query.redirect}?${qs.stringify(newQuery)}`;
             } else {
               window.location.href = DEFAULT_REDIRECT_PAGE;
             }
