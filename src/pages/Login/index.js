@@ -34,17 +34,16 @@ class Login extends Component {
           payload: values,
           success: rsp => {
             message.success('登录成功');
+            const token = rsp.headers.authorization;
+            const newQuery = {
+              ...query,
+              token,
+            };
+            delete newQuery.redirect;
             if (query.redirect) {
-              const token = rsp.headers.authorization;
-              const newQuery = {
-                ...query,
-                token
-              }
-              delete newQuery.redirect;
-
               window.location.href = `${query.redirect}?${stringify(newQuery)}`;
             } else {
-              window.location.href = DEFAULT_REDIRECT_PAGE;
+              window.location.href = `${DEFAULT_REDIRECT_PAGE}?${stringify(newQuery)}`;
             }
           },
           error: () => {
