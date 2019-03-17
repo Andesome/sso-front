@@ -7,6 +7,7 @@ import qs from 'qs';
 
 import './index.less';
 
+const { stringify } = qs;
 const FormItem = Form.Item;
 
 @connect(({ user }) => ({
@@ -41,7 +42,7 @@ class Login extends Component {
               }
               delete newQuery.redirect;
 
-              window.location.href = `${query.redirect}?${qs.stringify(newQuery)}`;
+              window.location.href = `${query.redirect}?${stringify(newQuery)}`;
             } else {
               window.location.href = DEFAULT_REDIRECT_PAGE;
             }
